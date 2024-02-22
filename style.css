@@ -1,0 +1,100 @@
+/* style.css */
+@keyframes move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+    
+/* 기본 스타일 */
+#birthdayMessage {
+    font-size: 2em; /* 데스크탑 화면용 기본 크기 */
+    color: #fc27c7;
+    animation: move 5s infinite alternate;
+}
+
+/* 모바일 화면용 스타일 */
+@media (max-width: 768px) {
+    #birthdayMessage {
+    font-size: 1.5em; /* 모바일 화면에서는 글씨 크기를 줄임 */
+    }
+
+    .balloon, .star {
+    font-size: 2em; /* 모바일 화면에 맞게 아이콘 크기 조정 */
+    }
+
+    #animationArea {
+    height: 50vh; /* 모바일 화면에서는 애니메이션 영역의 높이를 줄임 */
+    }
+}
+  
+@media (max-width: 480px) {
+#birthdayMessage {
+    font-size: 1em; /* 더 작은 모바일 화면에서는 글씨 크기를 더 줄임 */
+}
+
+.balloon, .star {
+    font-size: 1.5em; /* 더 작은 화면에서 아이콘 크기를 더 줄임 */
+}
+
+#animationArea {
+    height: 40vh; /* 더 작은 모바일 화면에서는 애니메이션 영역의 높이를 더 줄임 */
+}
+}
+  
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-20px); }
+}
+
+.balloon, .star {
+position: absolute;
+animation: float 6s ease-in-out infinite;
+}
+
+.balloon {
+font-size: 3em;
+}
+
+.star {
+font-size: 2em;
+color: yellow;
+}
+
+#animationArea {
+position: relative;
+width: 100%;
+height: 100vh;
+overflow: hidden;
+}
+
+/* 여러 풍선과 별을 위한 추가 스타일링 */
+.balloon:nth-child(odd) { animation-duration: 8s; }
+.balloon:nth-child(even) { animation-duration: 10s; }
+.star:nth-child(odd) { animation-duration: 7s; }
+.star:nth-child(even) { animation-duration: 9s; }
+
+#playButton {
+    font-size: 1em;
+    padding: 1px 2px;
+    background-color: yellow;
+    color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 5px; /* 버튼이 메시지 아래에 오도록 간격 조정 */
+  }
+
+#birthdayMessage, #playButton {
+position: relative;
+z-index: 2; /* 텍스트와 버튼을 앞으로 */
+}
+
+#animationArea {
+position: relative;
+z-index: 1; /* 애니메이션 영역을 뒤로 */
+}
+
+.balloon, .star {
+position: absolute;
+z-index: 0; /* 풍선과 별을 가장 뒤로 */
+}
